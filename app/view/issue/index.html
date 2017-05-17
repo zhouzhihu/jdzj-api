@@ -1,0 +1,17 @@
+<html>
+<head>
+  <title>Hacker News</title>
+  <link rel="stylesheet" href="/public/css/issue.css" />
+</head>
+<body>
+<div class="news-view view">
+  {% for item in list %}
+  <div class="item">
+    {{ item.name }}
+    &nbsp;&nbsp;
+    {{ helper.relativeTime(item.summiterDate) }}
+  </div>
+  {% endfor %}
+</div>
+</body>
+</html>
