@@ -9,6 +9,8 @@ module.exports = app =>{
    * 请求之前监听，用于处理公共请求前的处理
    */
   app.httpclient.on('request', req => {
+	console.log("请求cookies：");
+	console.log(req.ctx.req.headers.cookie);
     if("undefined" != typeof req.ctx.req.headers.cookie) {
       req.args['headers'] = req.args['headers'] || {}
       req.args.headers['cookie'] = req.args.headers['cookie'] || {};
@@ -27,12 +29,12 @@ module.exports = app =>{
    */
   class EgrandController extends app.Controller {
     get page(){
-      return {
+      return Object.assign(this.ctx.query, {
         pageNo: this.ctx.query.pageNo || 1,
-        pageSize: this.ctx.query.pageSize || 25,
+        pageSize: this.ctx.query.pageSize || 5,
         order: this.ctx.query.order || '',
         dir: this.ctx.query.dir || 'asc'
-      }
+      });
     }
     notFound(msg) {
       msg = msg || 'not found';
@@ -60,6 +62,7 @@ module.exports = app =>{
       return
     }
     let cookies = headers['set-cookie'];
+	console.log("请求后cookies");
     console.log(cookies);
     ctx.res._headers = ctx.res._headers || {};
     ctx.res._headerNames = ctx.res._headerNames || {};

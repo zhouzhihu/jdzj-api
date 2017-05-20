@@ -1,7 +1,7 @@
 module.exports = app => {
   class LoginService extends app.Service{
     * login(loginName, loginPassword, isSavePwd){
-      const {data : {context : egdContext}} = yield this.ctx.curl(`${this.serverAPI}/loginAction.do`, {
+      const {data : {result: result, context : egdContext, msg}} = yield this.ctx.curl(`${this.serverAPI}/loginAction.do`, {
         data: {
           action: 'loginByAjax',
           loginName: loginName,
@@ -10,7 +10,7 @@ module.exports = app => {
         },
         dataType: 'json'
       });
-      return {egdContext};
+      return {result, msg, egdContext};
     }
   }
   return LoginService;

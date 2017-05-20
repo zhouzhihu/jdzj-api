@@ -5,11 +5,12 @@ module.exports = app => {
       const loginName = ctx.query.loginName;
       const loginPassword = ctx.query.loginPassword;
       const isSavePwd = ctx.query.isSavePwd || false;
-      console.log("loginName1 = " + loginName);
-      console.log("loginPassword = " + loginPassword);
-      console.log("isSavePwd = " + isSavePwd);
-      const {egdContext} = yield ctx.service.login.login(loginName, loginPassword, isSavePwd);
-      ctx.body = egdContext;
+      const {result, msg, egdContext} = yield ctx.service.login.login(loginName, loginPassword, isSavePwd);
+      if(result)
+        ctx.body = {result, egdContext};
+      else{
+        ctx.body = {result, msg};
+      }
     }
   }
   return LoginController;

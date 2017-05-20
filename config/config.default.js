@@ -1,7 +1,7 @@
 exports.keys = "ssss";
 exports.middleware = [ 'cors' ];
 exports.cors = {
-  origin: 'http://localhost:8080',
+  origin: 'http://10.1.10.16:8080',
   maxAge: 1000000,
   credentials: true
 };
