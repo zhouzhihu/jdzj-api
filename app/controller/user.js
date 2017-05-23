@@ -1,15 +1,15 @@
 module.exports = app => {
   class LoginController extends app.Controller{
-    * index(){
+    * login(){
       const ctx = this.ctx;
       const loginName = ctx.query.loginName;
       const loginPassword = ctx.query.loginPassword;
       const isSavePwd = ctx.query.isSavePwd || false;
-      const {result, msg, egdContext} = yield ctx.service.login.login(loginName, loginPassword, isSavePwd);
-      if(result)
-        ctx.body = {result, egdContext};
+      const {success, msg, egdContext} = yield ctx.service.login.login(loginName, loginPassword, isSavePwd);
+      if(success)
+        ctx.body = {success, result : JSON.parse(egdContext)};
       else{
-        ctx.body = {result, msg};
+        ctx.body = {success, msg};
       }
     }
   }

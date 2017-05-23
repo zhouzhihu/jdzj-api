@@ -11,7 +11,7 @@ module.exports = app => {
         type: ctx.params.status
       });
       const page = yield ctx.service.issues.todo(params);
-      ctx.body = page;
+      ctx.body = {success: true, result: page};
     }
     * new (){
       this.ctx.body = "/new";
