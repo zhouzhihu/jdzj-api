@@ -22,7 +22,7 @@
     "node": ">=6.0.0"
   },
   "scripts": {
-    "start": "node index.js",
+    "start": "set EGG_SERVER_ENV=prod&&node index.js",
     "dev": "egg-bin dev",
     "test": "npm run lint -- --fix && npm run test-local",
     "test-local": "egg-bin test",
