@@ -1,5 +1,5 @@
 exports.keys = "ssss";
-exports.middleware = [ 'cors', 'errorHandler' ];
+exports.middleware = [ 'cors', 'errorHandler', 'notfoundHandler' ];
 exports.cors = {
   origin: 'http://10.1.10.16:8080',
   maxAge: 1000000,
